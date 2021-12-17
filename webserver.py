@@ -5,6 +5,7 @@
 # Starts a custom webserver and handles all requests
 # 
 # Autor : Luis Enrique Méndez Cabrera
+# Modified to implamentate Interfaz_server.py: Luna Pérez José Luis 
 # Version original: Mauricio Matamoros
 # License: MIT
 #
@@ -24,7 +25,6 @@ from Interfaz_server import desploy
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from Runner import *
 
-import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
