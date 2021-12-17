@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        html,body{
+            height: 100%;
+            background-color: white;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            font-family: system-ui;
+          }    
+        
+          .tab {
+            border: 1px solid #ccc;
+            width: 100%;
+            place-content: center;
+            display: flex;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+          }
+          
+          .tab button {
+            color: white;
+            font-family: system-ui;
+            background-color: #666ad1;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            width:100%
+            
+          }
+          
+          .tab button:hover {
+            background-color: #303f9f;
+          }
+          
+          .tab button.active {
+            background-color: #001970;
+          }
+          
+          .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+            width: 450px;
+            text-align: center;
+          }
+          section{
+            padding-bottom: 5%;
+            align-items: center;
+          }
+          div.container{
+            display: grid;
+            grid-template: repeat(3,1fr)/repeat(3,1fr);
+          }
+          
+          article{
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+          }
+          img{
+            height:250px;
+            width:400px
+          }
+          .collapsible {
+            color: cornsilk;
+            font-family: system-ui;
+            background-color: #0d47a1;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+          }
+          
+          .collapsible.active {
+            color: cornsilk;
+            font-family: system-ui;
+            background-color: #82b3c9;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+          }
+          
+          .collapsible:hover{
+            color: black;
+            font-family: system-ui;
+            background-color: #b3e5fc; 
+          }
+          .collapsible:after {
+            color: cornsilk;
+            font-family: system-ui;
+            content: '\02795';
+            font-size: 13px;
+            float: right;
+            margin-left: 5px;
+          }
+          
+          .collapsible.active:after {
+            content: "\2796";
+          }
+          .content {
+            display: none;
+            border-style: groove;
+            background-color: eeeeee;
+            width:100%;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+          .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+          }
+          
+          .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+          
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+          }
+          
+          .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+          }
+          
+          input:checked + .slider {
+            background-color: #2196F3;
+          }
+          
+          input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+          }
+          
+          input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+          }
+          .slider.round {
+            border-radius: 34px;
+          }
+          
+          .slider.round:before {
+            border-radius: 50%;
+          }
+          
+          form{
+            display:grid;
+            place-content: center;
+          }
+    </style>
+</head>
+
+<body>
+  <div><h1>Control Remoto Smart Home</h1></div>
+  <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'Manual')">Manual</button>
+      <button class="tablinks" onclick="openTab(event, 'Timer')">Programada</button>
+  </div>
+  <br>
+  <div id="Manual" class="tabcontent">
+      <button type="button" class="collapsible">CCTV</button>
+      <div class="content">
+          <section id="vigilancia">
+              <div class="container">
+
+                  <article>
+                      <h3>Puerta</h3>
+                      <label class="switch">
+                          <input type="checkbox" name="puerta" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>
+                  <article>
+                      <h3>Sala</h3>
+                      <label class="switch">
+                          <input type="checkbox" name="sala" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>
+                  <article>
+                      <h3>Comedor</h3>
+                      <label class="switch">
+                          <input type="checkbox" name="escaleras" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>                       
+                  <article>
+                      <h3>Cocina</h3>
+                      <label class="switch">
+                          <input type="checkbox" disabled="true" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>
+                  <article>
+                      <h3>Garage</h3>
+                      <label class="switch">
+                          <input type="checkbox" disabled="true" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>
+                  <article>
+                      <h3>Pasillo</h3>
+                      <label class="switch">
+                          <input type="checkbox" disabled="true" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>  
+                  <article>
+                      <h3>Habitacion1</h3>
+                      <label class="switch">
+                          <input type="checkbox" disabled="true" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>
+                  <article>
+                      <h3>Habitacion2</h3>
+                      <label class="switch">
+                          <input type="checkbox" disabled="true" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>
+                  <article>
+                      <h3>Habitacion3</h3>
+                      <label class="switch">
+                          <input type="checkbox" disabled="true" onclick="getValues('vigilancia')">
+                          <span class="slider round"></span>
+                        </label>
+                  </article>                      
+              </div>                
+          </section>  
+      </div> 
+      <br>
+      <br>
+      <button type="button" class="collapsible">Iluminacion</button>
+      <div class="content">
+
+          <section id="luces">
+              <div class="container">
+                  <article>
+                      <h3>Cocina</h3>
+                      <div id="range">
+                          <input name="cocina" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Garage</h3>
+                      <div id="range">
+                          <input name="garage" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Pasillo</h3>
+                      <div id="range">
+                          <input name="pasillo" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>   
+                  <article>
+                      <h3>Sala</h3>
+                      <div id="range">
+                          <input name="sala" disabled="true" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Comedor</h3>
+                      <div id="range">
+                          <input name="comedor" disabled="true" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Habitacion 1</h3>
+                      <div id="range">
+                          <input name="habitacion1" disabled="true" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>  
+                  <article>
+                      <h3>Habitacion 2</h3>
+                      <div id="range">
+                          <input name="habitacion2" disabled="true" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Habitacion 3</h3>
+                      <div id="range">
+                          <input name="habitacion3" disabled="true" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Habitacion 4</h3>
+                      <div id="range">
+                          <input name="habitacion4" disabled="true" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                      </div>
+                  </article>                     
+              </div>
+          </section> 
+      
+      </div>
+      <br>
+      <br>
+      <button type="button" class="collapsible">Puertas</button>
+      <div class="content">
+          <section id="puertas">
+              
+              <article>
+                  <h3>Entrada</h3>
+                  <label class="switch">
+                      <input name="entrada" type="checkbox" onclick="getValues('puertas')">
+                      <span class="slider round"></span>
+                    </label>
+              </article>
+              <article>
+                  <h3>Principal</h3>
+                  <label class="switch">
+                      <input name="principal" type="checkbox" onclick="getValues('puertas')">
+                      <span class="slider round"></span>
+                    </label>
+              </article>
+              <article>
+                  <h3>AGarage</h3>
+                  <label class="switch">
+                      <input name="garage" type="checkbox" onclick="getValues('puertas')">
+                      <span class="slider round"></span>
+                    </label>
+              </article>      
+          </section>
+      </div>
+      <br>
+      <br>
+  </div>
+  <div id="Timer" class="tabcontent">
+      <button type="button" class="collapsible">Iluminacion</button>
+      <div class="content">
+
+          <section id="luces">
+              <div class="container" name="timer">
+                  <article>
+                      <h3>Cocina</h3>
+                      <div id="range">
+                          <input name="cocina" type="range" min="0" max="100" value="0" step ="5" >
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Garage</h3>
+                      <div id="range">
+                          <input name="garage" type="range" min="0" max="100" value="0" step ="5" >
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Pasillo</h3>
+                      <div id="range">
+                          <input name="pasillo" type="range" min="0" max="100" value="0" step ="5" >
+                      </div>
+                  </article>   
+                  <article>
+                      <h3>Sala</h3>
+                      <div id="range">
+                          <input name="sala" disabled="true" type="range" min="0" max="100" step ="5" value="0">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Comedor</h3>
+                      <div id="range">
+                          <input name="comedor" disabled="true" type="range" min="0" max="100" step ="5" value="0">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Habitacion 1</h3>
+                      <div id="range">
+                          <input name="habitacion1" disabled="true" type="range" min="0" max="100" step ="5" value="0">
+                      </div>
+                  </article>  
+                  <article>
+                      <h3>Habitacion 2</h3>
+                      <div id="range">
+                          <input name="habitacion2" disabled="true" type="range" min="0" max="100" step ="5" value="0">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Habitacion 3</h3>
+                      <div id="range">
+                          <input name="habitacion3" disabled="true" type="range" min="0" max="100" step ="5" value="0">
+                      </div>
+                  </article>
+                  <article>
+                      <h3>Habitacion 4</h3>
+                      <div id="range">
+                          <input name="habitacion4" disabled="true" type="range" min="0" max="100" step ="5" value="0">
+                      </div>
+                  </article>                     
+              </div>
+              <br>
+              <br>
+              <form name="formulario" method="post" action="send()">
+                  <label>Fecha:
+                  <input type="date" name="fecha" step="1" />
+                  </label>
+                  <br>
+                  <label>
+                  Hora:
+                  <input type="time" name="hora" min="00:00" max="24:00" step="3600"/>
+                  </label>
+                  <br>
+                  <button type="button" name="luces" onclick="getValuesProgrammed(this.name)">Programar</button>
+
+              </form>
+          </section> 
+      
+      </div>
+
+  </div>
+</body>
+
+</html>
+
+<script>
+
+  var response = {}
+  var datos = {}
+  var fecha = new Date();
+
+  var setFecha = document.querySelector("input[name=fecha]");
+  setFecha.min = fecha.getFullYear()+'-'+(fecha.getMonth()+1)+'-'+'0'+fecha.getDate();
+  setFecha.value = fecha.toLocaleDateString()
+
+  var setHora = document.querySelector("input[name=hora]");
+  setHora.value = fecha.toLocaleTimeString().slice(0,5);
+
+
+  /**
+  *Función que envía a los componentes la información con los valores de los sliders de la página web que no estén inhabilitados
+  *
+  *@params {event} string con el nombre de la sección con la que se tuvo interacción
+  *@return void
+  **/
+  function mouseUp(event){        
+    response = {}
+    datos={}
+    var section = document.querySelector("section#"+event)
+    var inputs = section.querySelectorAll("input")
+    for (var i = 0; i < inputs.length; i++) {
+        var actual = inputs[i]
+        if(!actual.disabled){
+            datos[actual.name] = actual.value
+        }
+    }
+    response[event]=datos
+    submit(response)
+  }
+
+  /**
+  *Función que envía a los componentes la información con el estado de los switches de la página web que no estén inhabilitados
+  *
+  *@params {event} string con el nombre de la sección con la que se tuvo interacción
+  *@return void
+  **/
+  function getValues(event){
+    response = {}
+    datos={}
+    var section = document.querySelector("section#"+event)
+    var inputs = section.querySelectorAll("input")
+    for (var i = 0; i < inputs.length; i++) {
+        var actual = inputs[i]
+        if(!actual.disabled){
+            datos[actual.name] = actual.checked
+        }
+    }
+    response[event]=datos
+    console.log(response)
+    submit(response)
+  }
+
+    /**
+    *Función que envía un objeto con los valores programados
+    *
+    *@params {event} string con el nombre de la sección con la que se tuvo interacción
+    *@return void
+    **/
+  function getValuesProgrammed(event){
+    response = {}
+    datos={}
+    var horario = {}
+
+    var getFecha = document.querySelector("input[name=fecha]").value;
+    var getHora = document.querySelector("input[name=hora]").value;     
+
+    horario['fecha']=getFecha
+    horario['tiempo']=getHora
+
+    var inputs = document.querySelectorAll("div[name=timer] input")
+    for (var i = 0; i < inputs.length; i++) {
+        var actual = inputs[i]
+        if(!actual.disabled){
+            datos[actual.name] = actual.value
+        }
+    }
+    response[event] = datos
+    response['horario']=horario
+    submit(response)
+  }
+
+    /**
+    *Función que envía la información a la interfaz del prototipo.
+    *
+    *@params {response} diccionario con la información a procesar en la interfaz
+    *@return void
+    **/
+  function submit(response){
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", window.location.href, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(response));
+
+  }
+
+    /**
+    *Función que controla los botones de clase Tab para la interfaz
+    *
+    *@params {evt} string con el nombre de la sección con la que se tuvo interacción
+    *@params {nombre} nombre de la etiqueta button seleccionada
+    *@return void
+    **/
+  function openTab(evt, nombre) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(nombre).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+  }
+
+</script>
