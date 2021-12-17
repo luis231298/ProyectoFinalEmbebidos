@@ -1,2 +1,2 @@
 # ProyectoFinalEmbebidos
-##Concentrador básico Smart Home
+Concentrador básico Smart Home
