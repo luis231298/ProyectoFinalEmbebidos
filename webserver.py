@@ -28,6 +28,7 @@ from Runner import *
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication
 
+#Se pone la clase aquí debido a que al no ponerla se cierran automaticamente las ventanas
 class GUI_Main(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -110,10 +111,15 @@ class WebServer(BaseHTTPRequestHandler):
         else:
             print("Usar interfaz tkinter")
             func = switcher.get(llaves[0])
+            #Al ya saber que el json_obj es un diccionario que guardara la información
+            #recibida del HTML obtendremos de ella los valores en este caso de luces
             dic = json_obj.get('luces')
+            #inicializamos ventana
             app = QApplication(sys.argv)
             GUI = GUI_Main()
+            #modificamos valores en cada cambio de valor
             desploy(dic,GUI)
+            #mostramos y cerramos la ventana
             GUI.show()
             sys.exit(app.exec_())
             
