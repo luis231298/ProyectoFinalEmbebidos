@@ -8,3 +8,6 @@ Ejemplos:
 
 -Luz de la pasillo en 50%
 ![Pasillo50](https://user-images.githubusercontent.com/21083744/146622276-c8359663-b84f-4a32-98be-8b05005510ba.png)
+
+Luna Pérez José Luis
+Encargado de desarrollar la Interfaz grafica y conectarla al server.
