@@ -7,3 +7,4 @@ Ejemplos:
 ![Cocina100](https://user-images.githubusercontent.com/21083744/146622129-dbb3d859-6b8e-412f-b7c4-3d584a269d66.png)
 
 -Luz de la pasillo en 50%
+![Pasillo50](https://user-images.githubusercontent.com/21083744/146622276-c8359663-b84f-4a32-98be-8b05005510ba.png)
