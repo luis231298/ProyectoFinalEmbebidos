@@ -21,7 +21,7 @@ import json
 import magic
 
 from interfaz import lights,cams,doors
-from Interfaz_server import desploy
+from Interfaz_server import deploy
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from Runner import *
 
@@ -118,7 +118,7 @@ class WebServer(BaseHTTPRequestHandler):
             app = QApplication(sys.argv)
             GUI = GUI_Main()
             #modificamos valores en cada cambio de valor
-            desploy(dic,GUI)
+            deploy(dic,GUI)
             #mostramos y cerramos la ventana
             GUI.show()
             sys.exit(app.exec_())
